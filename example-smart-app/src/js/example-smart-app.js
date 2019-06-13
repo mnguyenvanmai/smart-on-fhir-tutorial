@@ -22,17 +22,6 @@
                     }
                   });
 
-        var cond = smart.patient.api.search({type: 'Condition'});
-        
-
-        $.when(pt, cond).fail(onError);   
-        $.when(pt, cond).done(function(patient, cond) {     
-          var category = cond.category;
-          p.category = category;
-
-          ret.resolve(p);
-        });  
-
         $.when(pt, obv).fail(onError);
 
         $.when(pt, obv).done(function(patient, obv) {
@@ -96,7 +85,6 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
-      category: {value: ''},
     };
   }
 
@@ -140,7 +128,6 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-    $('#category').html(p.category);
   };
 
 })(window);
