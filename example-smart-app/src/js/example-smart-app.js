@@ -22,6 +22,12 @@
                     }
                   });
 
+        var cond = smart.patient.api.search({type: 'Condition'});
+        var category = cond.category;
+        p.category = category;
+
+
+
         $.when(pt, obv).fail(onError);
 
         $.when(pt, obv).done(function(patient, obv) {
@@ -83,6 +89,7 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+      category: {value: ''},
     };
   }
 
@@ -126,6 +133,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#category').html(p.category);
   };
 
 })(window);
