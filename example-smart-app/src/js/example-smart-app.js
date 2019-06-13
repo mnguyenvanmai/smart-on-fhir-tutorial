@@ -23,10 +23,15 @@
                   });
 
         var cond = smart.patient.api.search({type: 'Condition'});
-        var category = cond.category;
-        p.category = category;
+        
 
+        $.when(pt, cond).fail(onError);   
+        $.when(pt, cond).done(function(patient, cond) {     
+          var category = cond.category;
+          p.category = category;
 
+          ret.resolve(p);
+        });  
 
         $.when(pt, obv).fail(onError);
 
@@ -68,6 +73,8 @@
 
           ret.resolve(p);
         });
+
+        
       } else {
         onError();
       }
